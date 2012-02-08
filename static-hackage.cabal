@@ -1,0 +1,35 @@
+Name:                static-hackage
+Version:             0.1.0
+Synopsis:            Static file structure generator for personal Hackage replacement.
+Description:
+    This package contains a program that generates proper files and
+    folder so they are prepared for static serving as Hackage
+    compatible server. Usual scenario is to have darcs repository with
+    binary packages, an on-commit hook that updates a repo and then
+    run this program to create necessary support files.
+    .
+    The trick then is to add the static-hackage repository to your cabal config file, with a line such as:
+    .
+    remote-repo: static-hackage:http://localhost:3500/
+
+--Homepage:            http://github.com/snoyberg/yackage
+License:             BSD3
+License-file:        LICENSE
+Author:              Gracjan Polak, Michael Snoyman
+Maintainer:          gracjanpolak@gmail.com
+Category:            Distribution, Web, Yesod
+Build-type:          Simple
+Cabal-version:       >=1.6
+
+
+Executable static-hackage
+  Main-is:             static-hackage.hs
+  Build-depends:       base >= 4 && < 5
+                     , Cabal
+                     , bytestring
+                     , utf8-string
+                     , zlib
+                     , tar
+                     , containers
+                     , directory
+                     , transformers
