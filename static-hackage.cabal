@@ -1,5 +1,5 @@
 Name:                static-hackage
-Version:             0.1.0
+Version:             0.1.1
 Synopsis:            Static file structure generator for personal Hackage replacement.
 Description:
     This package contains a program that generates proper files and
@@ -29,7 +29,7 @@ Executable static-hackage
                      , bytestring
                      , utf8-string
                      , zlib
-                     , tar
+                     , tar < 0.4
                      , containers
                      , directory
                      , transformers
