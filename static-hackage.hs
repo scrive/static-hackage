@@ -106,7 +106,7 @@ addFileContent ps content = do
     getCabal (Next entry rest)
         | reverse (take 6 $ reverse $ entryPath entry) == ".cabal" = entryContent entry
         | otherwise = getCabal rest
-    getCabal (Fail s) = error $ "Invalid tarball: " ++ s
+    getCabal (Fail s) = error $ "Invalid tarball: " ++ show s
 
 rebuildIndex :: Map PackageName (Set.Set Version) -> IO ()
 rebuildIndex ps = do
