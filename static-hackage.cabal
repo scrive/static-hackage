@@ -12,18 +12,24 @@ Description:
     .
     remote-repo: static-hackage:http://localhost:3500/
 
---Homepage:            http://github.com/snoyberg/yackage
+Homepage:            http://github.com/scrive/static-hackage
 License:             BSD3
 License-file:        LICENSE
 Author:              Gracjan Polak, Michael Snoyman
 Maintainer:          gracjanpolak@gmail.com
-Category:            Distribution, Web, Yesod
+Copyright:           Scrive AB, Michael Snoyman
+Category:            Distribution, Web
 Build-type:          Simple
 Cabal-version:       >=1.6
 Tested-with:         GHC==7.4.2, GHC==7.6.3, GHC==7.8.4, GHC==7.10.3, GHC==8.0.1
 
+source-repository head
+  type:     git
+  location: https://github.com/scrive/static-hackage
+
 Executable static-hackage
   Main-is:             static-hackage.hs
+  Ghc-Options:         -Wall
   Build-depends:       base >= 4 && < 5
                      , Cabal
                      , bytestring
