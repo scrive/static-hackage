@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -Wall #-}
+{-# LANGUAGE CPP #-}
 -- | Static hackage generator program
 --
 -- Use it like:
@@ -46,8 +46,10 @@ type Tarball = FilePath
 
 type PackageDB = Map PackageName (Set.Set Version)
 
+#if !MIN_VERSION_Cabal(1,24,0)
 unPackageName :: PackageName -> String
 unPackageName (PackageName s) = s
+#endif
 
 tarballName :: PackageName -> Version -> [Char]
 tarballName pn v = concat
