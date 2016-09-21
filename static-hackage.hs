@@ -46,7 +46,7 @@ type Tarball = FilePath
 
 type PackageDB = Map PackageName (Set.Set Version)
 
-#if !MIN_VERSION_Cabal(1,24,0)
+#if !MIN_VERSION_Cabal(1,22,0)
 unPackageName :: PackageName -> String
 unPackageName (PackageName s) = s
 #endif
