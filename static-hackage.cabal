@@ -1,6 +1,6 @@
 Name:                static-hackage
 Version:             0.2
-Synopsis:            Static file structure generator for personal Hackage replacement.
+Synopsis:            Static file structure generator for personal Hackage servers.
 Description:
     This package contains a program that generates proper files and
     folder so they are prepared for static serving as Hackage
@@ -8,9 +8,12 @@ Description:
     binary packages, an on-commit hook that updates a repo and then
     run this program to create necessary support files.
     .
-    The trick then is to add the static-hackage repository to your cabal config file, with a line such as:
+    The trick then is to add the static-hackage repository to your cabal
+    config file, with a section such as:
     .
-    remote-repo: static-hackage:http://localhost:3500/
+    > remote-repo static-hackage
+    >    url: http://localhost:3500/
+    .
 
 Homepage:            http://github.com/scrive/static-hackage
 License:             BSD3
@@ -26,7 +29,7 @@ Extra-source-files:  README.md
 
 source-repository head
   type:     git
-  location: https://github.com/scrive/static-hackage
+  location: https://github.com/scrive/static-hackage.git
 
 Executable static-hackage
   Main-is:             static-hackage.hs
