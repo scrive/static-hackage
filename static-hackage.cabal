@@ -24,7 +24,7 @@ Copyright:           Scrive AB, Michael Snoyman
 Category:            Distribution, Web
 Build-type:          Simple
 Cabal-version:       >=1.6
-Tested-with:         GHC == 8.0.2, GHC == 8.2.2, GHC == 8.4.4, GHC == 8.6.2
+Tested-with:         GHC == 8.4.4, GHC == 8.6.2
 Extra-source-files:  README.md
 
 source-repository head
@@ -34,7 +34,7 @@ source-repository head
 Executable static-hackage
   Main-is:             static-hackage.hs
   Ghc-Options:         -Wall
-  Build-depends:       base >= 4 && < 5
+  Build-depends:       base >= 4.11 && < 5
                      , Cabal >= 2.2 && < 2.5
                      , bytestring
                      , utf8-string
