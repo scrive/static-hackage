@@ -27,10 +27,11 @@ import Control.Monad (foldM)
 import Control.Monad.IO.Class (liftIO)
 import Data.Map (Map)
 import Data.Maybe (fromMaybe)
-import Data.Version
 import Distribution.Package
 import Distribution.PackageDescription
-import Distribution.PackageDescription.Parse
+import Distribution.PackageDescription.Parsec
+import Distribution.Pretty
+import Distribution.Types.Version
 import Prelude hiding (pi)
 import System.Directory
 import System.Environment
@@ -55,7 +56,7 @@ tarballName :: PackageName -> Version -> [Char]
 tarballName pn v = concat
     [ unPackageName pn
     , "-"
-    , showVersion v
+    , prettyShow v
     , ".tar.gz"
     ]
 
@@ -63,7 +64,7 @@ cabalName :: PackageName -> Version -> [Char]
 cabalName pn v = concat
     [ unPackageName pn
     , "-"
-    , showVersion v
+    , prettyShow v
     , ".cabal"
     ]
 
@@ -73,7 +74,7 @@ tarballPath pn v = do
     return $ concat
         [ rd
         , '/' : unPackageName pn
-        , '/' : showVersion v
+        , '/' : prettyShow v
         ]
 
 
@@ -87,9 +88,9 @@ addFileContent ps content = do
                 NormalFile lbs _ -> lbs
                 _ -> error "cabal file must be a NormalFile"
     let di =
-            case parsePackageDescription $ U.toString cabal of
-                ParseOk _ x -> x
-                y -> error $ "Invalid cabal file: " ++ show y
+            case parseGenericPackageDescriptionMaybe $ L.toStrict cabal of
+                Just x  -> x
+                Nothing -> error $ "Invalid cabal file: " ++ U.toString cabal
     let pi = package $ packageDescription di
     let name = pkgName pi
     let version = pkgVersion pi
@@ -132,7 +133,7 @@ rebuildIndex ps = do
     go' path name version = concat
         [ path
         , '/' : unPackageName name
-        , '/' : showVersion version
+        , '/' : prettyShow version
         , '/' : cabalName name version
         ]
 

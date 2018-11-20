@@ -1,5 +1,5 @@
 Name:                static-hackage
-Version:             0.2
+Version:             0.2.0.1
 Synopsis:            Static file structure generator for personal Hackage servers.
 Description:
     This package contains a program that generates proper files and
@@ -35,7 +35,7 @@ Executable static-hackage
   Main-is:             static-hackage.hs
   Ghc-Options:         -Wall
   Build-depends:       base >= 4 && < 5
-                     , Cabal
+                     , Cabal >= 2.2 && < 2.5
                      , bytestring
                      , utf8-string
                      , zlib
